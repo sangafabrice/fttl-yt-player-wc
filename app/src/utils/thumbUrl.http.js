@@ -1,0 +1,1 @@
+export { default as httpRequestThumbnail } from "./_thumbUrl.http.js";

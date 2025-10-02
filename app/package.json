@@ -1,0 +1,41 @@
+{
+  "name": "fttl-yt-player",
+  "version": "1.0.0",
+  "main": "src/fttl-yt-player.js",
+  "type": "module",
+  "scripts": {
+    "watch": "nodemon"
+  },
+  "nodemonConfig": {
+    "exec": "rollup --config",
+    "watch": "src",
+    "ignore": "src/**/bin/*.*",
+    "ext": "js,html,css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "chai": "^6.0.1",
+    "cssnano": "^7.1.1",
+    "fast-glob": "^3.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "karma": "^6.4.4",
+    "karma-chai-plugins": "^0.9.0",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-firefox-launcher": "^2.1.3",
+    "karma-mocha": "^2.0.1",
+    "karma-rollup-preprocessor": "^7.0.8",
+    "karma-web-components": "^1.0.4",
+    "karma-webkit-launcher": "^2.6.0",
+    "mocha": "^11.7.2",
+    "nodemon": "^3.1.10",
+    "playwright": "^1.55.0",
+    "postcss-preset-env": "^10.3.1",
+    "postcss-url": "^10.1.3",
+    "rollup": "^4.50.0",
+    "rollup-plugin-string": "^3.0.0"
+  }
+}

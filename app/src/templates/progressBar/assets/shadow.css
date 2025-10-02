@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    height: 3px;
+
+    &::before {
+        --rate: var(--buffer-rate, 0);
+        background-color: #00000050;
+    }
+
+    &::after {
+        --rate: var(--value-rate, 0);
+        background-color: #f03;
+        position: relative;
+        top: -100%;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: inherit;
+        height: 100%;
+        transition: width 1s ease;
+        width: calc(var(--rate) * 100%);
+    }
+}

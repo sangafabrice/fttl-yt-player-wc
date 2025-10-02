@@ -1,0 +1,175 @@
+@keyframes duration-loading {
+    0% {
+        content: ".";
+    }
+    50% {
+        content: ". .";
+    }
+    100% {
+        content: ". . .";
+    }
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+:host {
+    --backdrop-color: from #1f0d0b srgb r g b;
+    aspect-ratio: 16/9;
+    color: white;
+    container: host / inline-size;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+:host(:not(:hover)) {
+
+    >time>span[aria-hidden]::before {
+        content: attr(data-duration);
+    }
+}
+
+:host(:hover)>time>span[aria-hidden]:not([data-current-time])::before,
+:host(:not(:hover))>time>span[aria-hidden]:not([data-duration])::before {
+    animation: duration-loading 1s infinite;
+}
+
+:host:has(> .loading),
+:host(:not(:hover)) {
+
+    >.transparent-onload {
+        opacity: 0;
+    }
+
+    >button {
+        display: none;
+    }
+}
+
+@container host (max-width: 150px) {
+    .mobile-hide {
+        display: none;
+    }
+}
+
+.stack-bottom {
+    height: 100%;
+}
+
+.stack-top {
+    position: absolute;
+}
+
+.margin-inline-end {
+    right: .5rem;
+}
+
+fttl-progress-bar {
+    bottom: 0;
+    width: 100%;
+}
+
+iframe {
+    --yt-iframe-offset-width: 1000%;
+    border: none;
+    margin-left: calc(-1 * var(--yt-iframe-offset-width));
+    pointer-events: none;
+    position: relative;
+    top: -100%;
+    transition: opacity 200ms linear;
+    width: calc((2 * var(--yt-iframe-offset-width)) + 100%);;
+}
+
+a {
+    font-size: 100vmax;
+    hyphens: auto;
+    inset: 0;
+    opacity: 0;
+    text-align: justify;
+}
+
+svg {
+    display: none;
+    margin-inline: .2rem;
+    position: relative;
+    top: 0.15rem;
+    width: 1.5rem;
+
+    &:has(#mute-title) {
+        left: 2px;
+    }
+}
+
+button {
+    aspect-ratio: 1/1;
+    background-color: color(var(--backdrop-color) / .4);
+    border: none;
+    border-bottom-color: #000;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    top: .5rem;
+    transition: background-color 500ms linear, border-bottom-color 500ms linear;
+
+    &:is(:hover, :focus-visible) {
+        background-color: color(var(--backdrop-color) / .8);
+        box-shadow: 0 0 3px 1px #0000004d;
+    }
+
+    &:active {
+        background-color: color(var(--backdrop-color) / 1);
+        box-shadow: 0 0 .5px 0 #0000004d;
+        transition: none;
+    }
+
+    &:hover {
+        border-bottom: 1px solid color(var(--backdrop-color) / .9);
+    }
+
+    &:focus-visible {
+        outline: 1px ridge #fff;
+    }
+
+    >svg:first-of-type {
+        border-radius: 50%;
+        inset: 0;
+        margin-inline: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    >svg:first-of-type,
+    &[aria-pressed="true"]>svg:nth-of-type(2),
+    &[aria-pressed="false"]>svg:last-of-type {
+        display: unset;
+    }
+}
+
+time {
+    background-color: color(var(--backdrop-color) / .6);
+    border-radius: 3px;
+    bottom: .75rem;
+    font-size: .8rem;
+    letter-spacing: 2px;
+    line-height: 1;
+    padding: .3rem .2rem .2rem .35rem;
+    pointer-events: none;
+    text-align: right;
+}
+
+span.sr-only {
+    clip-path: inset(50%);
+    height: 1px; 
+    overflow: hidden; 
+    position: absolute; 
+    white-space: nowrap; 
+    width: 1px;
+}
+
+span[aria-hidden]::before {
+    content: attr(data-current-time);
+}

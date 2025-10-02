@@ -1,0 +1,1 @@
+export default { hq: "hq", sd: "sd", maxres: "maxres" };
